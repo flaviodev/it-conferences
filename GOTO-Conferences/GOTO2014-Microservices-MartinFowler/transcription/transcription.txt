@@ -1,0 +1,1338 @@
+00:11
+so microservices have been talked about
+00:13
+a lot over the last year or so I see a
+00:19
+huge amount of stuff on Twitter and the
+00:21
+like talking about this topic it's
+00:23
+something I've been hearing about for a
+00:25
+good bit for a little bit longer last
+00:27
+two or three years various of my
+00:29
+colleagues and friends have been talking
+00:30
+about micro services and for me the
+00:35
+struggle was to try and figure out well
+00:36
+what exactly are they what what do
+00:39
+people really mean when they talk about
+00:41
+microservices and also you know when
+00:44
+should we consider using this technique
+00:46
+is it new or not do we use it do we not
+00:49
+use it and what nerf is it in the first
+00:51
+place I mean the basic idea is fairly
+00:54
+straightforward you contrast it with
+00:57
+what's considered to be a traditional
+00:59
+monolithic application a monolithic a
+01:02
+monolithic application means you've got
+01:04
+various capabilities various things that
+01:07
+you want to provide and you put them all
+01:09
+in the same application typically
+01:11
+running in a single process and you
+01:14
+think of it as one thing the micro
+01:17
+service approach and its crew
+01:19
+disciplines is trying to take each of
+01:21
+these capabilities and put them into
+01:23
+separate processes and instead of having
+01:26
+one process have this network of
+01:28
+communicating processes a lot of people
+01:31
+like to use the example of of the UNIX
+01:33
+command line where if you want to get a
+01:35
+list of all the files in your directory
+01:37
+sorted you might use two or three
+01:39
+different programs put together in a
+01:41
+pipeline to do so it also has a
+01:44
+consequence for distribution if you've
+01:46
+got a model if you scale by effectively
+01:50
+cookie cutter in the monolith and
+01:52
+putting it on multiple machines while
+01:54
+we're microservices you've got more of a
+01:56
+flexible approach because you can put
+01:58
+different services on different machines
+02:00
+so that if some services get more load
+02:02
+than others they can have more copies of
+02:04
+them made that's the kind of very crude
+02:07
+overview but this is still a long way
+02:10
+away from what I would really call the
+02:12
+definition of it I mean
+02:13
+how does this vary from everything I've
+02:15
+been hearing people Yammer on about
+02:17
+service-oriented architecture for the
+02:19
+last 10 years but the trouble is with
+02:22
+something like a topic like micro
+02:23
+services it's very hard to come up with
+02:25
+any kind of firm definition yes I mean
+02:28
+I've filled the same thing with no
+02:29
+sequel right I mean no sequel databases
+02:31
+I mean what's the definition and no
+02:33
+sequel and even further back I mean you
+02:36
+know what is the definition we come up
+02:38
+with really solid definition for
+02:39
+functional programming well you know
+02:41
+there are plenty out there you can
+02:42
+choose from quite a wide range what I
+02:46
+think is better to think about is
+02:47
+instead of thinking about a definition
+02:48
+to talk about common characteristics and
+02:51
+what I mean by common characteristics is
+02:54
+to say if you burnt the talk to AB whole
+02:56
+bunch of people doing micro-services and
+02:58
+you look for the common things that most
+03:00
+of them are doing your test is that most
+03:03
+people who say they're doing
+03:04
+micro-services should be doing most of
+03:06
+these things and I got together with one
+03:10
+of my colleagues who's one of these guys
+03:12
+has done a lot of work with micro
+03:13
+services and we came up with an article
+03:16
+that we published earlier this year
+03:19
+those of you at the back are going to
+03:21
+struggle with all that everything on the
+03:23
+slides that's at the bottom because of
+03:24
+the way the things laid out but it's out
+03:26
+there and I'm just going to summarize
+03:29
+some of these these were the nine common
+03:31
+characteristics that we came up with in
+03:34
+writing that article and I'm not going
+03:37
+to talk through them all because I don't
+03:38
+have enough time but I will highlight
+03:40
+some that I think are particularly
+03:42
+interesting so the first thing is this
+03:45
+notion of componentization via services
+03:48
+now the idea software should be broken
+03:51
+up into components has been around again
+03:55
+forever we always a lot of people have
+03:57
+talked about component based software
+03:58
+and how it would be good to have
+04:00
+components that you can work with but
+04:02
+often the term component of course has
+04:04
+had a lot of problems in terms of
+04:06
+definition as well I remember a one
+04:09
+point object being substituted for
+04:11
+components and then components came back
+04:13
+to objects again and it all got very
+04:14
+confusing what I focus on for a
+04:17
+definition of component really comes
+04:19
+from Ralph Johnson he said that what
+04:22
+we're trying to do is we're trying to
+04:23
+build software the way people would
+04:25
+assemble stereo
+04:26
+components you know you have an
+04:28
+amplifier you have speakers you have a
+04:29
+CD play have a tape player you can
+04:32
+replace any of these items independently
+04:35
+that's a crucial thing and indeed you
+04:38
+can upgrade any of these items
+04:40
+independently so if I want to get an
+04:43
+improved amplifier I don't have to
+04:45
+change everything else that's a goal of
+04:47
+what we're aiming for a component is
+04:50
+something that's independently
+04:51
+replaceable independently upgradable so
+04:56
+in terms of software and we see
+04:58
+components to becoming two forms we
+05:01
+obtain libraries that we use from third
+05:03
+parties and we make them part of our
+05:06
+process and to some extent we have then
+05:09
+the choice of when do we want to upgrade
+05:11
+that do we want to get a new version of
+05:13
+our XML processing library or do we
+05:15
+stick with the one that we've currently
+05:16
+got and hopefully the upgrade isn't
+05:18
+going to affect the rest of our
+05:20
+application too much depending upon how
+05:22
+the dependences are all laid out a
+05:25
+service is a different kind of component
+05:27
+where it's running in its own process
+05:29
+and while with a library we talk using
+05:32
+the language communication facilities
+05:34
+that we have built into whatever
+05:36
+language we're using with a service
+05:38
+we're typically using inter process
+05:39
+communication facilities such as web
+05:42
+service calls or messaging or something
+05:44
+of that kind and the services give us
+05:48
+some useful advantages even when it
+05:49
+tends to replace ability and upgrade
+05:51
+ability if I've got a monolith with
+05:54
+components that are libraries and I've
+05:57
+got you know somebody brings out a new
+05:59
+version of a component that would be
+06:01
+really nice but it only works on Java 8
+06:03
+and I've got another component in my
+06:05
+monolith that doesn't work with Java 8
+06:08
+and can only work with Java 7 what do I
+06:10
+do I'm stuck but on the other hand with
+06:13
+if they were separate services they
+06:14
+would be running in completely different
+06:16
+runtimes and they could operate they
+06:18
+could be upgraded more independently now
+06:20
+there's a cost of course with that but
+06:22
+that's part of the notion of how it ties
+06:24
+into the independent upgrade ability so
+06:29
+for the next one
+06:31
+organization in around business
+06:34
+capabilities is another important theme
+06:36
+in the micro services view of the world
+06:37
+so a lot of lot even development
+06:41
+organizations organize themselves around
+06:43
+technology I mean you'll see this in a
+06:46
+lot of big companies I'll have their D
+06:47
+bas and their database group that might
+06:49
+have a completely different group of
+06:50
+people on the UI it's focused around
+06:53
+technology the key thing with the micro
+06:56
+services view of the world is that we
+06:57
+should instead organize around business
+06:59
+capabilities and that each team should
+07:03
+have some elements right the way through
+07:06
+and ideally focusing directly on the end
+07:09
+users themselves there's an interesting
+07:12
+example of this from Amazon which is a
+07:14
+common certainly inspiration for the
+07:16
+micro services community where when they
+07:18
+divided everybody knows Amazon divided
+07:21
+themselves up into two pizza teams and
+07:23
+that's talked about a lot but what's
+07:25
+talked about a lot less often is the
+07:26
+fact that each team was responsible for
+07:29
+the communication right way through to
+07:30
+the end user experience and the idea
+07:33
+that that should connect right the way
+07:35
+through to the people at the end and
+07:37
+they should be judged on how does this
+07:39
+affect business outcomes right the way
+07:42
+through is a very important part of that
+07:44
+thinking so we have this notion of
+07:46
+divide yourself up around some kind of
+07:49
+business organization and make that as
+07:52
+full stack as possible perhaps when it
+07:59
+comes to comparison to what a lot of
+08:00
+people have come across in terms of
+08:02
+services one of the biggest shifts is
+08:04
+this shift about let's have smart
+08:08
+endpoints and dumb pipes when a lot of
+08:11
+people talk about service-oriented
+08:13
+architecture they talk about the idea of
+08:16
+let's get some powerful piece of
+08:17
+middleware that will automatically do
+08:20
+all sorts of stuff it'll route messages
+08:21
+it will apply business rules it does all
+08:23
+sorts of things this of course is the
+08:26
+the ESB the Enterprise Service bus or is
+08:30
+it more correctly known the egregious
+08:32
+spaghetti box
+08:36
+the micro-service community very much
+08:38
+regret reject this notion and says the
+08:41
+smarts instead should move to the
+08:43
+endpoints themselves what we want is
+08:46
+everything to connect together and to be
+08:49
+able to easily route messages or
+08:51
+communications between them but it
+08:52
+should be up to the endpoints where all
+08:54
+that smartness goes any business logic
+08:57
+any routing stuff all of this should be
+09:00
+based on the endpoints just give us a
+09:01
+good efficient piping mechanism and the
+09:03
+inspiration in many ways is of course
+09:05
+the Internet itself which works very
+09:07
+well because of the fact that it needs a
+09:09
+relatively dumb set of pipes and puts
+09:11
+all the intelligence onto the endpoints
+09:19
+another thing that also brings out this
+09:22
+variation to a lot of service stuff is
+09:25
+the notion of decentralization
+09:28
+decentralization in terms of the overall
+09:30
+way in which a service landscape is
+09:32
+governed and in particularly
+09:34
+decentralization in terms of data
+09:36
+management so again if we think of the
+09:40
+the monolithic world we think of the
+09:42
+fact that generally all of the data is
+09:44
+sitting in one honking big relational
+09:46
+database all right and it's often can be
+09:48
+to write across a company you know our
+09:50
+company's standard is Oracle or our
+09:52
+company's standard is db2 everything
+09:54
+goes in the same place and even a lot of
+09:56
+service-oriented architectures it's
+09:58
+really a lot about multiple services or
+10:00
+pulling data in and out of one logically
+10:03
+large database the micro service appoint
+10:06
+point of view is to say now every
+10:09
+service should be responsible for its
+10:11
+own data and its own persistence again
+10:14
+this is another thing that is inspired
+10:16
+by the Amazon experience Amazon made
+10:18
+that one of their rules when they
+10:20
+shifted to a service-oriented approach
+10:21
+and said you may never talk to another
+10:24
+services data store you can only talk to
+10:26
+another service through its API and
+10:29
+that's the rule that the micro service
+10:31
+people push as well now this is a couple
+10:35
+advantages first it removes this
+10:38
+horrible mess of integrating through a
+10:40
+database which causes no end of problems
+10:43
+in enterprises all over the place the
+10:46
+second thing it does it frees up
+10:47
+individual services to use a datastore
+10:49
+that make
+10:50
+sense to them some services a relational
+10:53
+database will make sense
+10:54
+others would want to use one of these
+10:56
+hot new no sequel fancy things and in
+10:59
+which case they use it for that but the
+11:01
+idea is yours choice of data persistence
+11:04
+should be entirely up to the individual
+11:06
+service themselves and that's part of
+11:10
+this general notion as I said of
+11:12
+decentralization it also goes to the
+11:14
+point of things like languages and tools
+11:16
+should again be individually chosen by
+11:19
+different service groups to make all of
+11:23
+this work it's really important to have
+11:25
+infrastructure automation so a lot of
+11:29
+things such as continuous delivery
+11:32
+techniques like Bluegreen deployment
+11:34
+that allow you to put stuff to live with
+11:37
+zero downtime these kinds of things are
+11:40
+mandatory in too in order to get this
+11:42
+kind of stuff to work because you're
+11:44
+talking about building what would be one
+11:46
+application as a dozen or two dozen
+11:48
+services so it's very important you have
+11:51
+a very automated way of getting these
+11:52
+things going you also want to be able to
+11:54
+get new boxes and spin them up rapidly
+11:56
+it also puts a lot of emphasis on
+11:59
+monitoring as well you've got to have
+12:02
+good monitoring so that when things go
+12:04
+wrong you can easily spot the fact that
+12:06
+something's gone wrong and you can use
+12:08
+the monitoring tools to help you debug
+12:09
+it and that of course then leads into
+12:12
+the notion that you have this explicit
+12:14
+design for failure if you're going to
+12:16
+have remote services they're going to
+12:18
+fail particularly as you distribute them
+12:20
+across multiple nodes so this is another
+12:23
+part of the reason why monitoring is so
+12:25
+important and of course it it's most
+12:27
+famous level you have things like the
+12:30
+chaos monkey Netflix is one of the most
+12:33
+well known MA micro service
+12:36
+architectures and they built a tool that
+12:39
+goes around randomly destroying nodes
+12:42
+and they use that in order to detect how
+12:46
+resilient their overall network is I
+12:48
+mean I don't run it all the time they
+12:50
+run it during office hours when there's
+12:51
+somebody there to fix things up but the
+12:53
+fact that you've got a tool that
+12:54
+deliberately causes failure in order to
+12:57
+help make sure you're resilient I think
+12:59
+it encapsulate svelt the attitude that
+13:02
+the micro service people have
+13:04
+and of course this is essential in any
+13:06
+kind of distributed system you have to
+13:08
+assume things are going to break so that
+13:12
+was our set of common characteristics
+13:14
+and I hope gives you a bit of a flavor
+13:16
+for the kinds of things that people talk
+13:18
+about but it still raises a number of
+13:20
+questions of which one of the biggest
+13:23
+things is is this really
+13:24
+service-oriented architecture is this
+13:26
+just the same kind of stuff that we've
+13:28
+been hearing about for a long time in
+13:30
+the context of SOA but in order to
+13:33
+answer that question you have to say to
+13:35
+yourself well what is SLA in the first
+13:37
+place and that is really I think at the
+13:39
+heart of the problem because I've heard
+13:42
+SLA defined in many different ways in
+13:44
+many different incompatible ways by
+13:46
+different people for some people SLA is
+13:50
+exactly what we've been talking about in
+13:52
+the micro service world and that's why I
+13:53
+met a number of people in the SOA
+13:55
+community a really ticked off at the
+13:57
+micro service people because their
+14:00
+attitude is well we've been doing all of
+14:01
+this and calling it SOA for years why do
+14:03
+you invent this new term and bring it
+14:05
+along what what is are you just calling
+14:07
+words because everybody knows of course
+14:09
+we become incredibly rich by coining
+14:11
+terminology I wish but of course SOA
+14:17
+means different things to different
+14:18
+people to many people in the micro
+14:21
+services community they've been around
+14:23
+big enterprises and to them SOA means
+14:26
+the enterprise service bus
+14:27
+it means Committees of people who are
+14:30
+there to lay down standards the health
+14:33
+services supposed to connect to each
+14:34
+other it's a very different world indeed
+14:37
+so the way I tend to think of it is
+14:39
+saying well SOA is this very broad term
+14:42
+and microservices is a subset of its
+14:45
+usage and the value of the term micro
+14:48
+services is it allows to put a label on
+14:51
+a useful subset of the SOA terminology
+14:54
+in my view the SOA term is too broad I
+14:58
+mean it means so many different things
+15:00
+it's practically meaningless but the
+15:03
+value of micro services is it carves out
+15:05
+a cut and consistent space within that
+15:08
+but he is perfectly fair to say that the
+15:11
+micro service approach has been done by
+15:13
+people under the name of SOA for at
+15:15
+least a decade
+15:16
+if not more
+15:17
+so it's not a new technique at all and
+15:19
+it's perfectly reasonable that people
+15:22
+are annoyed about it when they say Oh
+15:24
+micro services are nothing new that's a
+15:26
+perfectly reasonable response now one of
+15:31
+the problems with micro-services as a
+15:33
+term and I like to stress I didn't come
+15:36
+up with this term right I would have
+15:37
+come up with a better term but one of
+15:40
+the things about micro-services as a
+15:42
+term is that has this implication of
+15:44
+size and of course as soon as you say
+15:47
+micro is that well how big is a micro
+15:49
+service and you actually talk to any of
+15:52
+these people in the micro service world
+15:53
+and they're always very reluctant to
+15:54
+answer this question they always say
+15:56
+well you know it should be one
+15:58
+responsibility that's a kind of bogus
+16:01
+thing to say right I can imagine payroll
+16:03
+being one responsibility and I know
+16:06
+that's a pretty big system right I mean
+16:08
+it's all size I mean it's very
+16:10
+responsibilities are very flexible right
+16:14
+james lewis has this statement he says
+16:17
+mirco services have got to be small
+16:19
+enough to fit in my head now James has
+16:21
+config rate deal in his head as it turns
+16:24
+out but his point is of course the
+16:27
+survey that if you've got a service it
+16:29
+should be understandable to a single
+16:30
+person that's his test for it but that's
+16:33
+still a bit vague I started asking
+16:36
+around people trying to get a sense of
+16:38
+size people were extremely reluctant in
+16:41
+many ways but the way I was able to get
+16:42
+some figure by saying well how many
+16:44
+people per service in your application
+16:48
+and I got a lot of different answers and
+16:51
+as you can see there's quite a spread
+16:53
+here now 15 people 10 services for
+16:58
+people 200 services there's quite a
+17:01
+range of different sizes it's certainly
+17:05
+true that pretty where everywhere I come
+17:08
+across the notion of the to pizza team
+17:11
+from Amazon is fairly well regarded the
+17:15
+sense that you should never have a team
+17:16
+that's bigger than you could feed with
+17:18
+two pizzas I should say of course this
+17:20
+is two American pizzas and you can feed
+17:22
+a hell of a lot of people with two
+17:24
+American pizzas but I think the notion
+17:28
+is still there but within
+17:30
+there's still a lot of variability so
+17:34
+that's the best I can do when it comes
+17:37
+to defining microservices for you it's
+17:39
+still I'm afraid pretty fuzzy but you
+17:42
+know that's the way things go I think
+17:44
+however it is it does carve out a
+17:46
+reasonable class of systems the next
+17:49
+question of course is when you should
+17:51
+use it what are the advantages of
+17:52
+micro-services compared to monoliths now
+17:59
+one big advantage of a monolith is it a
+18:02
+relatively simple and familiar approach
+18:05
+to use and this is not to be
+18:08
+underestimated I mean I've already
+18:10
+started hearing and trickling in stories
+18:12
+of projects that you know decide you
+18:14
+know we want to use this micro-service
+18:16
+stuff because it's so cool we want to do
+18:18
+it and they ended up getting themselves
+18:20
+into trouble where they really should
+18:21
+have built a simple model if instead now
+18:24
+if you look at an application and you
+18:25
+say yeah that would work really nicely
+18:27
+as a simple rails app you don't want to
+18:29
+build start building it as a micro
+18:31
+service because micro services
+18:33
+introduced distributed computing they
+18:35
+often introduced asynchronous
+18:36
+communication and those are significant
+18:39
+complexity boosters so the monolith
+18:42
+still has the advantage of up to a
+18:44
+certain size at least simplicity one of
+18:48
+the great advantages of micro services
+18:50
+is the ability to deploy the various
+18:53
+pieces independently if you want to
+18:56
+upgrade a monolith you've got to upgrade
+18:58
+the whole thing I heard the story of an
+19:00
+insurance company where they've got one
+19:02
+monolith that handled all their
+19:04
+different lines of insurance if they
+19:06
+wanted to in to upgrade their auto
+19:08
+insurance they had to upgrade the home
+19:11
+insurance as well they couldn't do them
+19:12
+independently and that's a disadvantage
+19:15
+of a monolith you're forced to upgrade
+19:17
+all at once now if you're really good at
+19:20
+your continuous delivery pipelines I
+19:22
+think you can make that work but you but
+19:24
+it's much harder than trying to upgrade
+19:26
+and the separate pieces and that was in
+19:29
+fact one of the crucial reasons why
+19:31
+Netflix went down this route they had
+19:33
+difficulties getting their systems being
+19:35
+able to deploy as rapidly as they need
+19:37
+to do so they found that switching to a
+19:39
+micro service approach gave them more
+19:41
+flexibility and this is of course very
+19:43
+important in
+19:44
+in an age where we need to be able to
+19:46
+deploy new applications not once every
+19:48
+few months but every week every day and
+19:51
+often many times a day and then we are
+19:55
+granted your micro services that can
+19:57
+give you a greater degree of
+19:58
+availability if your recommendation
+20:01
+service goes down for some reason you
+20:03
+can still run your shopping cart and
+20:05
+this is important because what is the
+20:07
+most important thing to Americans
+20:09
+shopping right so nothing must stop the
+20:13
+shopping now that availability of course
+20:17
+comes from being handled be able to
+20:19
+handle failure effectively but if you've
+20:22
+got availability what does that mean you
+20:24
+lose consistency it's much harder to
+20:29
+maintain consistency with micro service
+20:31
+applications so you embrace eventual
+20:34
+consistency which may or may not be a
+20:37
+good thing depending on what where you
+20:38
+are and it's particularly difficult of
+20:41
+course to get the right kind of
+20:43
+consistent behavior so that I can
+20:44
+actually post an update when interacting
+20:48
+with a web app and actually make sure
+20:50
+that I see it and not go where did that
+20:52
+go did it get lost which is the kind of
+20:55
+thing that goes wrong when you don't do
+20:56
+consistency well another big issue we've
+20:59
+modeled with the monolith is that it
+21:02
+makes it relatively easy to refactor
+21:04
+particularly between modules now with
+21:07
+any kind of software design you want
+21:09
+good modularity you want to divide your
+21:12
+software up into pieces so that in order
+21:14
+to make a change I don't have to
+21:16
+understand the whole system I can just
+21:18
+understand one or two modules but that
+21:20
+means you've got to get your module
+21:22
+boundaries right and if you don't get
+21:24
+your module boundaries right you've got
+21:25
+to be able to change them now if you've
+21:28
+got a model if that kind of thing isn't
+21:29
+too bad you can say oh I need to move
+21:31
+this object from over here in that
+21:33
+module over there it's not a hard
+21:35
+refactoring to do in a microservices
+21:38
+world that becomes a hell of a lot
+21:40
+harder because now you're talking about
+21:42
+these remote calls so that's also I
+21:46
+think one of the problems with running
+21:47
+to monitor micro services too quickly if
+21:49
+you don't understand the module
+21:51
+boundaries well you've very easy to get
+21:53
+a lock yourself into a pure design and
+21:56
+anumana lift can be a good way of
+21:57
+figuring out
+21:58
+module boundaries are before you
+22:00
+actually do the split and we said that
+22:04
+one of the interesting things about
+22:05
+microservices is that they actually help
+22:07
+you preserve modularity a lot of people
+22:09
+you know like me waffle on endlessly
+22:12
+about how important it is to have good
+22:13
+modules now follow bob Martin's rules
+22:16
+about clean dependencies and all the
+22:18
+rest of it but the reality is most
+22:20
+systems find it hard to do it in
+22:22
+practice it's too easy to kind of do
+22:24
+little end runs around and expose little
+22:26
+things and not keep your module
+22:28
+boundaries solid on the other hand in a
+22:31
+micro service world your communications
+22:34
+are purely through your network
+22:35
+interfaces and it's maintained it makes
+22:38
+it really easy to ensure you don't share
+22:42
+mutable state which is of course one of
+22:44
+the best ways to get yourself into a
+22:46
+confusion in a monolith module
+22:48
+architecture so in many ways micro
+22:51
+service is kind of a discipline that
+22:53
+forces you to keep your modularity
+22:55
+together and then I mean the last big
+23:00
+advantage in micro services they allow
+23:02
+you to go with multiple platforms if
+23:04
+some parts of your application stack are
+23:07
+best off with a traditional you know
+23:08
+Java whatever language you can use them
+23:10
+in some places and then you use sort or
+23:13
+an even experiment with say a closure on
+23:16
+other areas you've got the flexibility
+23:19
+now of course you don't necessarily want
+23:20
+to go so mad that you've got 20 services
+23:22
+written in 30 programming languages but
+23:24
+on the other hand that flexibility can
+23:27
+be very valuable just as you don't know
+23:29
+use JavaScript that's the one thing I
+23:31
+really don't want anybody to do
+23:38
+you've got to fight back against that
+23:40
+monster somehow so that's the trade-offs
+23:45
+microservices are not straightforward
+23:47
+route to go in many ways I'd say if
+23:49
+you're not sure if you've got a
+23:51
+relatively small system don't worry
+23:53
+about it but on the other hand they can
+23:56
+be an appropriate appropriate
+23:57
+architecture in a lot of places and
+23:59
+we're still trying to understand what
+24:00
+the boundaries are between them it's
+24:02
+still fairly early and then the last
+24:05
+point I want to say is if you're going
+24:07
+to go down the micro-service point there
+24:09
+are certain things you've got to make
+24:11
+sure that you get sorted out otherwise
+24:12
+you're going to get into a lot of
+24:13
+trouble you've got to make sure that you
+24:16
+can provision new machines rapidly if
+24:18
+you're in a situation where it takes you
+24:21
+a month to get a new server set up and
+24:23
+provisioned and ready for use you're
+24:25
+going to have a lot of problems in the
+24:26
+micro service world this is of course
+24:28
+why micro services go very nicely with
+24:30
+cloud if you can provision a new machine
+24:32
+in the cloud very quickly which is for
+24:34
+instance what Netflix do then that
+24:36
+allows you a lot of flexibility there
+24:40
+make sure you have at least the basics
+24:43
+of monitoring you want to know when any
+24:45
+of your services go down you want to
+24:47
+know if something becomes unresponsive
+24:49
+or if important interactions or
+24:52
+transactions are getting dropped on the
+24:54
+floor you've got to have at least a
+24:56
+basic level of monitoring in place
+24:57
+and also you've got to make sure that
+25:00
+your services can be automatically and
+25:02
+rapidly deployed um you don't want to be
+25:05
+spending two days deploying the service
+25:07
+it's got to be there in hours at the
+25:09
+very least and preferably minutes and it
+25:12
+should be as much as possible automatic
+25:14
+process that's just the basics that's
+25:17
+just for running with just a couple of
+25:19
+certain amount of services and to do
+25:21
+more you've got to add more there's a
+25:23
+whole bunch of other stuff that you've
+25:24
+got to get into play as well so make
+25:26
+sure you've at least got those basics on
+25:29
+the one I missed
+25:30
+DevOps culture that is you've got to
+25:32
+break down the barriers between the
+25:34
+operations group in the applications
+25:36
+group so that they're working together
+25:37
+if you've got a difficult communications
+25:40
+between the two again you're not going
+25:42
+to be able to manage the quantity of
+25:44
+services that you've got to deal with so
+25:46
+as I said those I think are the minimum
+25:48
+things to have when you first go
+25:50
+five you don't necessarily have to have
+25:52
+them when you start building but you
+25:54
+definitely have to have them when you go
+25:56
+live with this thing
+25:58
+so that's microservices a very brief
+26:02
+introduction I've written various things
+26:04
+on it there's tons of stuff out there on
+26:06
+the web you can go and find out more and
+26:08
+that's the end of my first talk
+26:17
+you
