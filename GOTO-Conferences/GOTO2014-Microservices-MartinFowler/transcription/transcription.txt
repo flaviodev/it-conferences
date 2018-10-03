@@ -1,5 +1,3 @@
-(print version: https://docs.google.com/document/d/1pIE2eTLs6cEbs3ikRnFQEMePwIDLj8Rr9zKxcFAdh6Y/edit?usp=sharing)
-
 00:11
 so microservices have been talked about
 00:13
